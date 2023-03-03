@@ -1,19 +1,37 @@
 import "./App.css";
+import { useReducer } from "react";
 import { Home } from "./components/home/home";
 import { Todo } from "./components/todo/todo";
 import { Header } from "./components/header/header";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { TodoContext } from "./state/todo/todo-context";
+import { todoReducer } from "./state/todo/todo.reducer";
 
 function App() {
+  const [todoState, todoDispatch] = useReducer(todoReducer, {
+    todos: [
+      // {
+      //   title: "first1",
+      //   isComplete: false,
+      // },
+      // {
+      //   title: "second2",
+      //   isComplete: true,
+      // },
+    ],
+  });
+
   return (
     <HashRouter>
       <Header />
-      <Routes>
-        {/* http://localhost:3000/#/ */}
-        <Route path="/" element={<Home />} />
-        {/* http://localhost:3000/#/todo */}
-        <Route path="/todo" element={<Todo />} />
-      </Routes>
+      <TodoContext.Provider value={{ todoState, todoDispatch }}>
+        <Routes>
+          {/* http://localhost:3000/#/ */}
+          <Route path="/" element={<Home />} />
+          {/* http://localhost:3000/#/todo */}
+          <Route path="/todo" element={<Todo />} />
+        </Routes>
+      </TodoContext.Provider>
     </HashRouter>
   );
 }
