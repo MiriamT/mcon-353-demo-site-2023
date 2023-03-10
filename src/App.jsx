@@ -6,6 +6,7 @@ import { Header } from "./components/header/header";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { TodoContext } from "./state/todo/todo-context";
 import { todoReducer } from "./state/todo/todo.reducer";
+import { Chat } from "./components/chat/chat";
 
 function App() {
   const [todoState, todoDispatch] = useReducer(todoReducer, {
@@ -30,6 +31,8 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* http://localhost:3000/#/todo */}
           <Route path="/todo" element={<Todo />} />
+          {/* http://localhost:3000/#/chat */}
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </TodoContext.Provider>
     </HashRouter>
