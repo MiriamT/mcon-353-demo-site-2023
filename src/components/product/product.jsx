@@ -1,10 +1,11 @@
-import { Button, Card } from "@mui/material";
-import logo from "../../logo.svg";
-import "./home.css";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-export const Home = () => {
+export const Product = () => {
+  // Get the productId param from the URL.
+  const { productId } = useParams();
+  // now you can use productId in your API calls :)
+
   const navigate = useNavigate();
   const [idInput, setIdInput] = useState("");
 
@@ -14,11 +15,8 @@ export const Home = () => {
 
   return (
     <div>
-      <div className="home">
-        <Button className="button-class" variant="contained">
-          hello
-        </Button>
-      </div>
+      <div>product id: {productId}</div>
+
       <div>
         <input onInput={(e) => setIdInput(e.target.value)} value={idInput} />
         <button onClick={setUrl}>Go!</button>
